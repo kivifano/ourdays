@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kivifano</title>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #858EA9;
+            --bg: hsl(225, 17%, 59%);
+            --bg2: hsla(223, 23%, 30%, 0.35);
+        }
+        body {
+            margin: 0;
+            background-color: var(--bg);
+        }
+        .background {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #858EA9;
+            overflow: hidden;
+        }
+
+        .bg-text {
+            position: absolute;
+            color: var(--bg2); /* slightly darker + soft */
+            user-select: none;
+            /* pointer-events: none; */
+            transition: filter 300ms ease-in-out;
+        }
+        .bg-text:hover {
+            filter: blur(2px);
+        }
+        .t1 {
+            top: 10%;
+            left: 15%;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            transform: rotate(-15deg);
+        }
+
+        .t2 {
+            top: 40%;
+            left: 60%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            transform: rotate(25deg);
+        }
+
+        .t3 {
+            top: 70%;
+            left: 30%;
+            font-family: 'Dancing Script', cursive;
+            font-size: 42px;
+            transform: rotate(-40deg);
+        }
+
+        .t4 {
+            top: 20%;
+            left: 75%;
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            transform: rotate(90deg);
+        }
+
+        .t5 {
+            top: 80%;
+            left: 80%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            transform: rotate(-10deg);
+        }
+
+        .t6 {
+            top: 55%;
+            left: 10%;
+            font-family: 'Dancing Script', cursive;
+            font-size: 50px;
+            transform: rotate(15deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <span class="bg-text t1">Kivifano</span>
+        <span class="bg-text t2">Kivifano</span>
+        <span class="bg-text t3">Kivifano</span>
+        <span class="bg-text t4">Kivifano</span>
+        <span class="bg-text t5">Kivifano</span>
+        <span class="bg-text t6">Kivifano</span>
+    </div>
+
+    <script>
+        const presets = {
+            "filter": ["blur(0px)", "blur(1px)", "blur(2px)"],
+            "font-family": ["'Playfair Display', serif", "'Montserrat', sans-serif", "'Dancing Script', cursive"],
+            "top": ["10%", "40%", "70%", "20%", "80%", "55%"],
+            "left": ["15%", "60%", "30%", "75%", "80%", "10%"],
+            "font-size": ["48px", "36px", "42px", "30px", "28px", "50px"],
+            "transform": ["rotate(-15deg)", "rotate(25deg)", "rotate(-40deg)", "rotate(90deg)", "rotate(-10deg)", "rotate(15deg)"],
+        }
+
+
+    </script>
+</body>
+</html>
