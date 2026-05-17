@@ -21,6 +21,7 @@
             height: 100vh;
             background: #858EA9;
             overflow: hidden;
+            z-index: -1;
         }
 
         .bg-text {
@@ -80,6 +81,22 @@
             font-size: 50px;
             transform: rotate(15deg);
         }
+        main {
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .card {
+            min-height: 100px; min-width: 200px;
+            padding: 8px;
+            background-color: #fff;
+            box-shadow: 2px 2px 2px 0px #9993;
+            border-radius: 8px;
+        }
+        .card * {
+            text-align: center;
+        }
 
     </style>
 </head>
@@ -93,6 +110,14 @@
         <span class="bg-text t6">Kivifano</span>
     </div>
 
+    <main>
+        <div id="RelationshipCard" class="card">
+            <h3>Days Together</h3>
+            <div id="RelationshipCount"></div>
+        </div>
+    </main>
+    
+
     <script>
         const presets = {
             "filter": ["blur(0px)", "blur(1px)", "blur(2px)"],
@@ -103,6 +128,60 @@
             "transform": ["rotate(-15deg)", "rotate(25deg)", "rotate(-40deg)", "rotate(90deg)", "rotate(-10deg)", "rotate(15deg)"],
         }
 
+        const kivifanoLaunch = new Date("March 17, 2026 17:17:17 GMT-05:00");
+        const kivifanoLaunch2 = new Date("March 17, 2026 14:11:00 GMT-05:00");
+        const mili2days = 86400000;
+        const hoursPerDay = 24;
+        function UpdateTimeInCard(cardDate){
+            let cardCount = document.getElementById("RelationshipCount");
+            
+            let timeSince = Date.now() - cardDate.getTime();
+            let totalDaysSince = timeSince / mili2days;
+            let days = Math.floor(totalDaysSince);
+            let hours = Math.floor((totalDaysSince - days)*hoursPerDay);
+            let minutes = Math.floor((((totalDaysSince - days)*hoursPerDay)-hours)*60);
+            let seconds = Math.floor((((((totalDaysSince - days)*hoursPerDay)-hours)*60) - minutes) * 60);
+            
+            // let hms = totalDaysSince - days;
+            // let totalDaysSince2 = (Date.now() - kivifanoLaunch2.getTime()) / mili2days;
+            // let hms2 = totalDaysSince2 - Math.floor(totalDaysSince2);
+            // console.log(`hms: ${hms}, hms2: ${hms2}`);
+
+            const toNow = new Date(Date.now());
+            let todayYear = toNow.getFullYear();
+            let todayMonth = toNow.getMonth();
+            let todayDay = toNow.getDate();
+            // let todayDay2 = Math.floor(toNow.getDate() - hms2);
+
+            let dateYear = cardDate.getFullYear();
+            let dateMonth = cardDate.getMonth();
+            let dateDay = cardDate.getDate();
+
+            let monthsSince = ((todayYear - dateYear)*12) + (todayMonth - dateMonth);
+            let daysSince = (todayDay - dateDay);
+            // let daysSince = (todayDay2 - dateDay);
+            
+
+            // let displayText = `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+            // let displayText = `${days} days, ${hours}h:${minutes}m:${seconds}s`;
+            let displayText = `<div>${monthsSince} months and ${daysSince} days!</div>
+            <div>or ${days} days, ${hours}h:${minutes}m:${seconds}s</div>`;
+            console.log(displayText);
+            cardCount.innerHTML = displayText;
+        }
+        const refreshTime = 1000;
+        function update(){
+            UpdateTimeInCard(kivifanoLaunch);
+            setTimeout(() => {
+                requestAnimationFrame(update);
+            }, refreshTime);
+        }
+
+        window.addEventListener('load', (ev) => {
+            console.log(`Welcome to Kivifano!`);
+            UpdateTimeInCard(kivifanoLaunch);
+            update();
+        });
 
     </script>
 </body>
